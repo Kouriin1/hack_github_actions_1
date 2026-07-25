@@ -1,0 +1,16 @@
+
+name: Comandos Linux
+on: push 
+
+jobs:
+  comandos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: comandos
+        run: whoami
+      - run: pwd
+      - run: date
+      - run: uname -a
+      - run: |
+          echo "Varios comandos en un solo step"
+          ls -la
