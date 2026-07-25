@@ -1,16 +1,22 @@
-name: Eventos
+
+name: Condiciones
 
 on: [push, pull_request]
 
-
 jobs:
-  detectar-evento:
+  ejemplo:
     runs-on: ubuntu-latest
     steps:
-      - name: Mostrar tipo de evento
-        run: |
-          echo "El autor es: ${{ github.actor }} "
+      - name: detectar push con if
+        if: github.event_name == 'push'
+        run: echo "Ejecutando solo en push"
 
-      - name: Mostrar tipo de evento
+      - name: detectar pull_request con if
+        if: github.event_name == 'pull_request'
+        run: echo "Ejecutando solo en PR"
+
+      - name: Otra forma
         run: |
-          echo "El evento que me activó fue: ${{ github.event_name }}"
+          if [ "${{ github.event_name }}" == "push" ]; then
+            echo "Se detectó un push desde script bash"
+          fi
